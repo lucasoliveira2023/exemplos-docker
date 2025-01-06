@@ -1,0 +1,35 @@
+services:  # Definindo os serviços que a aplicação usará.
+  db:  # Serviço para o PostgreSQL.
+    image: postgres:13  # Imagem oficial do PostgreSQL versão 13.
+    container_name: postgres-db  # Nome do container do PostgreSQL.
+    environment:
+      POSTGRES_USER: user  # Nome do usuário principal do banco de dados.
+      POSTGRES_PASSWORD: password  # Senha para o usuário do banco de dados.
+      POSTGRES_DB: myapp  # Nome do banco de dados a ser criado.
+    ports:
+      - "5432:5432"  # Mapeia a porta 5432 do PostgreSQL do container para a porta 5432 na sua máquina.
+    volumes:
+      - pg-data:/var/lib/postgresql/data  # Volume para persistir os dados do banco de dados.
+    networks:
+      - app-network  # Rede personalizada para a comunicação entre os containers.
+
+  web:  # Serviço para a aplicação Django.
+    build: .  # Instrução para o Docker construir a imagem a partir do Dockerfile no diretório atual.
+    command: python manage.py runserver 0.0.0.0:8000  # Comando para rodar a aplicação Django.
+    volumes:
+      - .:/code  # Mapeia o código-fonte da aplicação do host para o container.
+    ports:
+      - "8000:8000"  # Mapeia a porta 8000 do container para a porta 8000 na sua máquina.
+    environment:
+      DATABASE_HOST: NOME DO BANCO.
+      
+    depends_on:
+      - db  # Garante que o PostgreSQL (db) seja iniciado antes da aplicação Django.
+    networks:
+      - app-network  # Conecta a aplicação Django à mesma rede personalizada 'app-network'.
+
+networks:  # Definição da rede personalizada para os containers se comunicarem entre si.
+  app-network:
+
+volumes:  # Definição de volumes persistentes.
+  pg-data:  # Volume para armazenar os dados do PostgreSQL.
