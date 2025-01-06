@@ -4,7 +4,7 @@ Este guia detalha como configurar e utilizar um ambiente Docker para sua aplica�
 
 Pré-requisitos
 
-Instalar o Docker e o Docker Compose.
+Instalar o Docker
 
 Ter um arquivo requirements.txt com as dependências do projeto Django.
 
