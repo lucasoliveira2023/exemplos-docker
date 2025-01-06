@@ -7,9 +7,9 @@ Pré-requisitos
 Instalar o Docker.
 
 Ter um arquivo requirements.txt com as dependências do projeto Django.
-
+```
 Arquivo Dockerfile
-'''
+
 # Escolher uma imagem base com Python.
 FROM python:3.11-slim
 
@@ -36,7 +36,7 @@ CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 '''
 
 O Dockerfile define como a imagem da aplicação será construída. Abaixo está o exemplo utilizado:
-'''
+```
 # Escolher uma imagem base com Python.
 FROM python:3.11-slim
 
@@ -65,7 +65,7 @@ CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 Arquivo docker-compose.yml
 
 O docker-compose.yml define os serviços necessários para rodar a aplicação, incluindo o banco de dados PostgreSQL.
-'''
+```
 version: '3.9'
 
 services:
@@ -103,7 +103,7 @@ networks:
 volumes:
   pg-data:
 
-  '''
+  ```
 
 Configurando o Ambiente
 
@@ -118,7 +118,7 @@ Certifique-se de que o arquivo requirements.txt contém todas as dependências d
 3. Configurar o Banco de Dados
 
 Atualize o settings.py do Django com as seguintes configurações de banco de dados:
-'''
+```
 
 DATABASES = {
     'default': {
@@ -131,7 +131,7 @@ DATABASES = {
     }
 }
 
-'''
+```
 Executando o Ambiente
 
 1. Construir os Containers
