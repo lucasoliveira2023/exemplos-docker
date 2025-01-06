@@ -35,7 +35,7 @@ EXPOSE 8000
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 '''
 
-O Dockerfile define como a imagem da aplicação será construída. Abaixo está o exemplo utilizado:
+O Dockerfile define como a imagem da aplicação será construída.
 ```
 # Escolher uma imagem base com Python.
 FROM python:3.11-slim
